@@ -14,5 +14,5 @@ While some of these tools may already exist on a target system, they are often o
 To bootstrap this environment on a new machine, paste the following command into your current bash/zsh shell:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/ninjit/dotfiles/refs/heads/main/bootstrap.sh | bash
+curl -fsSL https://github.com/ninjit/dotfiles/raw/refs/heads/main/bootstrap.sh | bash
 ```
