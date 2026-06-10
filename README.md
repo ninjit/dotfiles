@@ -9,10 +9,10 @@ A lightweight, portable CLI environment designed for zero-root, shared-account u
 
 While some of these tools may already exist on a target system, they are often old/outdated.
 
-## Quick Start (One-Liner Installation)
+## Quick Start
 
-To bootstrap this environment on a new machine, paste the following command into your current bash/zsh shell:
+To bootstrap this environment on a new machine, paste the following commands into your current bash/zsh shell:
 
 ```bash
-curl -fsSL https://github.com/ninjit/dotfiles/raw/refs/heads/main/bootstrap.sh | bash
+curl -fsSL https://github.com/ninjit/dotfiles/raw/refs/heads/main/bootstrap.sh -o bootstrap.sh && bash bootstrap.sh
 ```

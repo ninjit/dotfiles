@@ -55,27 +55,11 @@ echo "Downloading and extracting fish configuration..."
 # This downloads the repo archive, extracts only the 'fish' folder, 
 # and places it directly into ~/.config/fish
 curl -fsSL "https://github.com/$REPO_USER/$REPO_NAME/archive/refs/heads/$BRANCH.tar.gz" \
-    | tar -xzf - --strip-components=2 -C "$HOME/.config" "$REPO_NAME-$BRANCH/fish"
+    | tar -xzf - --strip-components=1 -C "$HOME/.config" "$REPO_NAME-$BRANCH/fish"
 
 
 # ---------------------------------------------------------------------
-# 4. Bootstrap Fisher & Plugins
-# ---------------------------------------------------------------------
-echo "🔌 Bootstrapping Fisher and plugins..."
-
-# Since your tar extraction just placed your 'fish_plugins' file into ~/.config/fish/,
-# we can feed that file directly into fish to install Fisher and all listed plugins at once.
-if [ -f "$HOME/.config/fish/fish_plugins" ]; then
-    echo "Installing plugins from fish_plugins..."
-    # This one-liner installs fisher itself, sets it up, and instantly downloads your plugins
-    fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher update"
-else
-    echo "⚠️ No fish_plugins file found, skipping plugin installation."
-fi
-
-
-# ---------------------------------------------------------------------
-# 5. Generate/Download Static Shell Completions
+# 4. Generate/Download Static Shell Completions
 # ---------------------------------------------------------------------
 echo "✍️ Setting up static tool completions for Fish..."
 
@@ -93,6 +77,34 @@ if command -v eza &> /dev/null; then
     echo "Downloading eza completions..."
     curl -fsSL "https://github.com/eza-community/eza/raw/refs/heads/main/completions/fish/eza.fish" \
         -o "$COMPLETIONS_DIR/eza.fish"
+fi
+
+
+
+# ---------------------------------------------------------------------
+# 5. Bootstrap Fisher & Plugins (Syntax Isolated)
+# ---------------------------------------------------------------------
+echo "🔌 Bootstrapping Fisher and syncing plugins..."
+
+# Feed the configuration steps straight into fish's standard input
+if [ -f "$HOME/.config/fish/fish_plugins" ]; then
+    echo "Syncing plugins from fish_plugins file..."
+    
+    # Using << 'EOF' guarantees Bash will NOT touch the text inside.
+    # No escaping (\$HOME) required! Fish handles it natively.
+    fish << 'EOF'
+        # Set paths and variables safely inside the transient Fish session
+        set -gx PATH $HOME/.pixi/bin $PATH
+        set -gx FISHER_SERVER_IDENTIFIER github.com
+        
+        # do install
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+        # Trigger the sync
+        fisher update
+EOF
+else
+    echo "⚠️ No fish_plugins file found, skipping plugin installation."
 fi
 
 
