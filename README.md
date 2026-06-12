@@ -5,7 +5,7 @@ A lightweight, portable CLI environment designed for zero-root, shared-account u
 ## What's Included
 * **Shell:** Fish (with custom functions/aliases)
 * **Prompt:** Starship (sane defaults)
-* **Core Tools:** `zoxide` (jumping), `eza` (ls replacement), `fzf` (fuzzy finding), `btop` (monitoring), `duf` (disk usage), `nano` (editor), `rsync`, and `rclone`.
+* **Core Tools:** `zoxide` (jumping), `eza` (ls replacement), `fzf` (fuzzy finding), `btop` (monitoring), `duf` (disk usage), `nano` (editor), git (version control), `rsync`, and `rclone`.
 
 While some of these tools may already exist on a target system, they are often old/outdated.
 
