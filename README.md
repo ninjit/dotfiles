@@ -23,10 +23,10 @@ curl -fsSL https://ninjit.github.io/dotfiles/bootstrap.sh -o bootstrap.sh && bas
 	- `eza` (ls replacement)
 	- `fzf` (fuzzy finding)
 	- `btop` (system monitoring)
-	- `duf` (disk + filesystem usage)
 	- `nano` (text editor)
 	- `git` (version control)
 	- `tmux` (terminal multiplexer)
+	- `duf`, `dust`, `duc`, `ncdu` (disk + filesystem usage)
 	- `rsync`, and `rclone` (remote filesystem transfers + syncing)
 
 While some of these tools may already exist on a target system, they are often old/outdated.
