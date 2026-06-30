@@ -23,6 +23,7 @@ curl -fsSL https://ninjit.github.io/dotfiles/bootstrap.sh -o bootstrap.sh && bas
 	- `eza` (ls replacement)
 	- `fzf` (fuzzy finding)
 	- `btop` (system monitoring)
+	- `fastfetch` (system info)
 	- `nano` (text editor)
 	- `git` (version control)
 	- `tmux` (terminal multiplexer)

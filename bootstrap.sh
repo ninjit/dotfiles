@@ -25,7 +25,7 @@ fi
 echo "⚙️ Installing CLI tools via Pixi Global..."
 
 # Array of your requested tools
-TOOLS=(fish starship zoxide eza fzf btop nano git tmux duf dust duc ncdu rsync rclone)
+TOOLS=(fish starship zoxide eza fzf btop fastfetch nano git tmux duf dust duc ncdu rsync rclone)
 
 for tool in "${TOOLS[@]}"; do
     if ! pixi global list | grep -q "^$tool "; then
